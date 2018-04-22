@@ -10,7 +10,7 @@ public class Main {
             Scanner s = new Scanner(is);
             StringBuilder st = new StringBuilder();
             while (s.hasNextLine()) {
-                st.append(s.nextLine());
+                st.append(s.nextLine() + '\n');
             }
             Lexer l = new Lexer(st.toString());
             if (args.length > 1 && Objects.equals(args[1], "print"))
