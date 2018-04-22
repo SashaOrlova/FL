@@ -1,0 +1,3 @@
+For run application:
+mvn compile && mvn exec:java -Dexec.mainClass="Main" -Dexec.args="src/main/resources/test.txt print" - with result
+mvn compile && mvn exec:java -Dexec.mainClass="Main" -Dexec.args="src/main/resources/test.txt" - silent mode
