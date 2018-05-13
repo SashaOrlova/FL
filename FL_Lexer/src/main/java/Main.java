@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        File f = new File("src/main/resources/test.txt");
+        File f = new File(args[0]);
         try {
             FileReader is = new FileReader(f);
             Scanner s = new Scanner(is);
@@ -13,10 +13,10 @@ public class Main {
                 st.append(s.nextLine() + '\n');
             }
             Lexer l = new Lexer(st.toString());
-            //if (args.length > 1 && args[1].equals("print"))
-                l.print();
+            l.print();
         } catch (FileNotFoundException e) {
-            System.out.println("Problem this input file!");
+            System.out.println(e.getMessage());
+            System.out.println("\nProblem this input file!");
         } catch (Lexer.LexerError lexerError) {
             System.out.println(lexerError.getMessage());
         }
