@@ -11,6 +11,10 @@ public class Lexer {
     public final static char SP  = (char) 0x20;
     public final static char HT  = (char) 0x09;
     public final static char FF  = (char) 0x1C;
+    Pattern keyWord = Pattern.compile("(if|then|else|while|do|read|write)(\\s|\\().*");
+    Pattern operator = Pattern.compile("(\\+|-|\\*|%|/|=|==|!=|>|<|>=|<=|&&|\\|\\|).*");
+    Pattern number = Pattern.compile("(^[-]?[0-9]*[.,]?[0-9]+(?:[eE][-+]?[0-9]+)?).*");
+    Pattern delimiter = Pattern.compile("([,;()]).*");
 
     String takeWord(String st) {
         int pos = 0;
@@ -27,9 +31,14 @@ public class Lexer {
         int pos = 0;
         StringBuilder ans = new StringBuilder();
         boolean wasPoint = false;
-        while ((pos < st.length())&&(st.charAt(pos) == 'e' ||  st.charAt(pos) == '.' && !wasPoint || st.charAt(pos) == '+' || (st.charAt(pos) <= '9' && st.charAt(pos) >= '0') || st.charAt(pos) == '-')) {
+        boolean wasE = false;
+        while ((pos < st.length())&&(st.charAt(pos) == 'e' ||  st.charAt(pos) == '.' && !wasPoint || (st.charAt(pos) == '+' && wasE) || (st.charAt(pos) <= '9' && st.charAt(pos) >= '0') || st.charAt(pos) == '-')) {
             if (st.charAt(pos) == '.')
                 wasPoint = true;
+            if (st.charAt(pos) == 'e')
+                wasE = true;
+            else
+                wasE = false;
             ans.append(st.charAt(pos));
             pos++;
         }
@@ -44,10 +53,6 @@ public class Lexer {
         return pageSeparator(c) || c == ' ' || c == SP || c == HT || c == '\t';
     }
     Lexer(String st) throws LexerError {
-        Pattern keyWord = Pattern.compile("(if|then|else|while|do|read|write)(\\s|\\().*");
-        Pattern operator = Pattern.compile("(\\+|-|\\*|%|/|=|==|!=|>|<|>=|<=|&&|\\|\\|).*");
-        Pattern number = Pattern.compile("(^[-+]?[0-9]*[.,]?[0-9]+(?:[eE][-+]?[0-9]+)?).*");
-        Pattern delimiter = Pattern.compile("([,;()]).*");
         int pos = 0;
         int row = 0;
         boolean lastNum = false;

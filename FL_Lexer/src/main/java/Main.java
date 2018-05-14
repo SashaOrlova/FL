@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +9,7 @@ public class Main {
             Scanner s = new Scanner(is);
             StringBuilder st = new StringBuilder();
             while (s.hasNextLine()) {
-                st.append(s.nextLine() + '\n');
+                st.append(s.nextLine()).append('\n');
             }
             Lexer l = new Lexer(st.toString());
             l.print();
