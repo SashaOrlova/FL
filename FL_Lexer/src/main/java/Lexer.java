@@ -32,7 +32,9 @@ public class Lexer {
         StringBuilder ans = new StringBuilder();
         boolean wasPoint = false;
         boolean wasE = false;
-        while ((pos < st.length())&&(st.charAt(pos) == 'e' ||  st.charAt(pos) == '.' && !wasPoint || (st.charAt(pos) == '+' && wasE) || (st.charAt(pos) <= '9' && st.charAt(pos) >= '0') || st.charAt(pos) == '-')) {
+        while ((pos < st.length())&&(st.charAt(pos) == 'e' ||  st.charAt(pos) == '.' && !wasPoint ||
+                (st.charAt(pos) == '+' && wasE) || (st.charAt(pos) <= '9' && st.charAt(pos) >= '0') ||
+                (st.charAt(pos) == '-' && (wasE || pos == 0)))) {
             if (st.charAt(pos) == '.')
                 wasPoint = true;
             if (st.charAt(pos) == 'e')
