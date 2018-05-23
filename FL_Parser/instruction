@@ -1,0 +1,3 @@
+For run application make:
+./start compile -- for compile 
+./start.sh run FILENAME  -- for run application 
