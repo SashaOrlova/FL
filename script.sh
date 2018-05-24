@@ -1,4 +1,5 @@
 #!/bin/bash
 
 rootdir=$(pwd)
-$rootdir/FL_Parser/start.sh run $rootdir/FL_Parser/prog
+cd $rootdir/FL_Parser
+./start.sh run prog
